@@ -8,8 +8,8 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String displayHome() {
-		return "SampleHome";  //Testing purposes
-		//return "home";
+		//return "SampleHome";  //Testing purposes
+		return "home";
 	}
 	
 }
