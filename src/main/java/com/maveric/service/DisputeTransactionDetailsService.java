@@ -1,0 +1,13 @@
+package com.maveric.service;
+
+import java.util.List;
+
+import com.maveric.model.DisputeTransactionDetails;
+
+public interface DisputeTransactionDetailsService {
+	DisputeTransactionDetails createDisputeTransactionDetailsService(DisputeTransactionDetails disputeTransactionDetails);
+	DisputeTransactionDetails findDisputeTransactionDetailsServiceById(int transactionId);
+	List<DisputeTransactionDetails> findAllDisputeTransactionDetailsService();
+	DisputeTransactionDetails updateDisputeTransactionDetailsService(DisputeTransactionDetails disputeTransactionDetails);
+	void deleteDisputeTransactionDetailsService(int transactionId);
+}
