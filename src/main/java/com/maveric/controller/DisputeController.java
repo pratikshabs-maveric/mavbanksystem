@@ -4,8 +4,12 @@ import java.util.*;
 import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,12 +38,22 @@ public class DisputeController {
 	
 	@Autowired
 	MavCustomerMasterService mavCustomerMasterService;
+	
 
 	
-	@RequestMapping(value = "addDisputeDetails", method = RequestMethod.POST )
+	//@RequestMapping(value = "addDisputeDetails", method = RequestMethod.POST )
+	@PostMapping(value = "addDisputeDetails")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public ModelAndView addDisputeCustomerDetails(DisputeCustomerDetails disputeCustomerDetails,DisputeReasons disputeReasons,
 			DisputeTransactionDetails disputeTransactionDetails) {
+		System.out.println("Inside Controller");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println("Auth->"+authentication);
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		System.out.println("User name: " + userDetails.getUsername());
+		MavCustomerMaster loggedInUser = mavCustomerMasterService.findByUsername(userDetails.getUsername());
+		System.out.println("User ID: " + loggedInUser.getCustomerId());
+		disputeCustomerDetails.setFk_customerId(loggedInUser.getCustomerId()); 
 		ModelAndView modelAndView = new ModelAndView("disputeSuccess");
 		ArrayList<DisputeTransactionDetails> disputeTransactionList = new ArrayList<DisputeTransactionDetails>();
 		disputeTransactionList.add(disputeTransactionDetails);
@@ -67,12 +81,4 @@ public class DisputeController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "addMasterCustomerDetails", method = RequestMethod.POST )
-	public ModelAndView addMasterCustomerDetails(MavCustomerMaster mavCustomerMaster) {
-		ModelAndView modelAndView = new ModelAndView("disputeSuccess");
-		
-		mavCustomerMasterService.createMavCustomerMaster(mavCustomerMaster);
-		
-		return modelAndView;
-	}
 }

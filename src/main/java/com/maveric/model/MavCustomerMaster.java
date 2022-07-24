@@ -1,17 +1,25 @@
 package com.maveric.model;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "mav_customer_master")
+@Table(name = "mavbank_customer_master")
 public class MavCustomerMaster {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int customerId;
+	private long customerId;
 	
 	private String customerName;
 	private String emailId;
@@ -19,10 +27,31 @@ public class MavCustomerMaster {
 	private String userName;
 	private String userPassword;
 	
-	public int getCustomerId() {
+	
+	
+	public MavCustomerMaster(String customerName, String emailId, String phoneNumber, String userName,
+			String userPassword) {
+		super();
+		this.customerName = customerName;
+		this.emailId = emailId;
+		this.phoneNumber = phoneNumber;
+		this.userName = userName;
+		this.userPassword = userPassword;
+	}
+	
+	
+
+
+	public MavCustomerMaster() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public long getCustomerId() {
 		return customerId;
 	}
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(long customerId) {
 		this.customerId = customerId;
 	}
 	public String getCustomerName() {
@@ -55,6 +84,7 @@ public class MavCustomerMaster {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
+	
 	
 	
 }

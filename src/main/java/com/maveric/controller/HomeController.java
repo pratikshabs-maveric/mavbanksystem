@@ -1,15 +1,21 @@
 package com.maveric.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
 public class HomeController {
 
-	@RequestMapping("/")
-	public String displayHome() {
-		//return "SampleHome";  //Testing purposes
-		return "home";
+	
+	@GetMapping("/login")
+	public String login() {
+		return "/login";
 	}
+	
+	@GetMapping("/")
+	public String displayHome() {
+		return "/index";
+	} 
 	
 }

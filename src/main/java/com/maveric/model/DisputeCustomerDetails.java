@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dispute_customer_details")
+@Table(name = "mavbank_dispute_customer_details")
 public class DisputeCustomerDetails {
 	
 	@Id
@@ -29,7 +29,7 @@ public class DisputeCustomerDetails {
 	
 	private Date presentDate;
 	
-	private int fk_customerId;
+	private long fk_customerId;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="fk_reasonId")
@@ -62,7 +62,7 @@ public class DisputeCustomerDetails {
 		
 	}
 	
-	public DisputeCustomerDetails(int disputeId, String customerName, String cardNumber, String accountNumber, String emailId, String mobileNumber, Date presentDate, DisputeReasons disputeReasons,List<DisputeTransactionDetails> disputeTransactionDetails,int fk_customerId) 
+	public DisputeCustomerDetails(int disputeId, String customerName, String cardNumber, String accountNumber, String emailId, String mobileNumber, Date presentDate, DisputeReasons disputeReasons,List<DisputeTransactionDetails> disputeTransactionDetails,long fk_customerId) 
 	{
 		super();
 		this.disputeId = disputeId;
@@ -120,11 +120,11 @@ public class DisputeCustomerDetails {
 		this.presentDate = presentDate;
 	}
 
-	public int getFk_customerId() {
+	public long getFk_customerId() {
 		return fk_customerId;
 	}
 
-	public void setFk_customerId(int fk_customerId) {
+	public void setFk_customerId(long fk_customerId) {
 		this.fk_customerId = fk_customerId;
 	}
 	
