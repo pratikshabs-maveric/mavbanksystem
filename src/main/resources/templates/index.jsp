@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
@@ -45,5 +46,6 @@
 		<p> Welcome to Maveic Bank Help Desk!! </p>
 		<p><a href="/views/disputeForm.jsp">Click here to open dispute form</a></p>
 	</div>
+	<sec:csrfInput />  
 </body>
 </html>

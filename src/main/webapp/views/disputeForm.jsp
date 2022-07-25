@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -158,10 +159,11 @@
             <br><br>
           </div>
         </div>
-
+		<sec:csrfInput />  
       </form>
     </div>
   </div>
+  
 </body>
 <script>
   $(function () {

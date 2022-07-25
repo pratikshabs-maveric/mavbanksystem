@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
@@ -19,6 +20,7 @@
 		<br>
 		<br>
 		<p><a href="#" th:href="@{/}">Go to Home</a></p>
+		<sec:csrfInput />  
 	</body>
 	<div class="footer">
     <img src="/images/footer-logo.svg" class="footer-img" />
