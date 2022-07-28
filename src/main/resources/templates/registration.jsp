@@ -39,20 +39,20 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 
-				<!-- success message -->
+				<!-- success message 
 				<div th:if="${param.success}">
-					<!--  <div class="alert alert-info">You've successfully registered 
-						to our bank!</div> -->
-						swal("You've successfully registered to our bank!");
+					  <div class="alert alert-info">You've successfully registered 
+						to our bank!</div> 
+						<!--  swal("You've successfully registered to our bank!"); 
 				</div>
-				<!-- Failure message -->
+				<!-- Failure message 
 				<div th:if="${param.failure}">
 					<div class="alert alert-danger">User already exists !</div>
 				</div>
 				
 				<div th:if="${param.failed}">
 					<div class="alert alert-danger">Unable to register! Kindly contact the administrator.</div>
-				</div>
+				</div> -->
 				
 				<h1>Registration</h1>
 
@@ -105,6 +105,29 @@
 	<sec:csrfInput />  
 </body>
 <script>
-	
+		const queryString = window.location.search;
+		console.log(queryString);
+		if(queryString.trim()=='?success')
+			{
+				swal({
+					  text: "You've successfully registered to our bank!",
+					  icon: "success",
+					  buttons: false,
+					  timer: 3000
+					});
+			}
+		else if(queryString.trim()=='?failure')
+		{
+			swal({
+				  text: "User already exists !",
+				  icon: "error",
+				  buttons: false,
+				  timer: 3000
+				});
+		}
+		else if(queryString.trim()=='?failed')
+		{
+			swal("Unable to register! Kindly contact the administrator.");
+		}
 </script>
 </html>
