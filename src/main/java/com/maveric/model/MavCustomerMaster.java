@@ -12,10 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name = "mavbank_customer_master")
+@Table(name = "mavbank_customer_master", uniqueConstraints = @UniqueConstraint(columnNames = {"userName"}))
 public class MavCustomerMaster {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
